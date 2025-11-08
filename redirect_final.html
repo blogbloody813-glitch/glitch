@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="5; url=https://1rnasr.github.io/Q1">
+<title>Redirecting...</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{height:100vh;display:flex;align-items:center;justify-content:center;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}
+  .overlay{position:relative;z-index:2;text-align:center}
+  .btn{display:inline-block;padding:12px 20px;border-radius:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.18);cursor:pointer;margin-top:16px}
+  .btn:active{transform:translateY(1px)}
+  .loader{margin:18px auto;border:8px solid rgba(255,255,255,0.18);border-top:8px solid #fff;border-radius:50%;width:64px;height:64px;animation:spin 1s linear infinite}
+  @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  video.bg{position:fixed;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);object-fit:cover;z-index:1}
+  .notice{margin-top:12px;opacity:0.95}
+</style>
+</head>
+<body>
+<video class="bg" id="bgvid" autoplay muted loop playsinline>
+  <source src="redirect_final_video.mp4" type="video/mp4">
+  <source src="redirect_final_video.mp4" type="video/quicktime">
+</video>
+
+<div class="overlay">
+  <h2>Redirecting — Tap below to enable sound</h2>
+  <div class="loader" aria-hidden="true"></div>
+  <p class="notice">You will be redirected in 5 seconds to <code>https://1rnasr.github.io/Q1</code></p>
+  <button id="soundBtn" class="btn">Tap to Enable Sound</button>
+</div>
+<audio id="bg-audio" loop preload="auto"><source src="وكر العصفور دسو على كلاش.mp3" type="audio/mpeg"></audio>
+<script>
+const btn = document.getElementById('soundBtn');
+const vid = document.getElementById('bgvid');
+const audio = document.getElementById('bg-audio');
+btn.addEventListener('click', async () => {
+  try {
+    if (audio) { await audio.play(); }
+    if (vid) { vid.muted = false; await vid.play(); }
+  } catch(e) { console.warn('play failed', e); }
+  btn.style.display = 'none';
+});
+setTimeout(() => { btn.style.display = 'none'; }, 4500);
+</script>
+</body>
+</html>
